@@ -4,7 +4,7 @@
 #
 # Run it hourly (but not exactly on the 0th minute of the hour)
 #
-# 4 0 0 0 0 /home/diaspora/usercount/usercount-cron.sh
+# 4 * * * * /home/diaspora/usercount/usercount-cron.sh
 #
 
 PYTHON="/usr/bin/python3"
