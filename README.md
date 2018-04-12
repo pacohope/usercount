@@ -5,6 +5,8 @@ This script generates user and post graphs in a graphic format. I use it to gene
 
 The script reads your `database.yml` file and looks for the `production` database name. It uses whatever `postgresql` configuration parameters it finds there. It does not (yet) work with MySQL databases.
 
+This is based off the fine work by [Josef](https://mastodon.social/@jk) on the [User Count Bot](https://mastodon.social/@usercount) that runs on [Mastodon.social](https://mastodon.social/).
+
 ### Dependencies
 
 -   **Python 3**
