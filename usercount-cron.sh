@@ -11,7 +11,7 @@ PYTHON="/usr/bin/python3"
 DIASPORA="/home/diaspora"
 COUNTHOME="${DIASPORA}/usercount"
 CSV="${COUNTHOME}/diasporastats.csv"
-YAML="${DIASPORA}/diaspora/config/database.yaml"
+YAML="${DIASPORA}/diaspora/config/database.yml"
 ASSETS="${DIASPORA}/diaspora/public/assets/"
 LOGFILE="${COUNTHOME}/cron.log"
 
