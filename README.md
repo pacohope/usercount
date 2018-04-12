@@ -1,28 +1,36 @@
-Mastodon User Count Bot
+Diaspora User and Post Count Bot
 =======================
 
-A bot which posts user statistics to [Mastodon](https://github.com/tootsuite/mastodon).
+A script to generate user and post graphs. Produces a graphic. I stick this on the main page at [A Grumpy World](https://a.grumpy.world/).
 
 ### Dependencies
 
--   **Python 2**
+-   **Python 3**
 -   [gnuplot](http://www.gnuplot.info/) version 5 or greater
--   [Mastodon.py](https://github.com/halcy/Mastodon.py): `pip install Mastodon.py`
--   Everything else at the top of `usercount.py`!
+-   `argparse`
+-   `PyYAML`
+-   [psycopg](http://initd.org/psycopg/)
+-   Most of it is listed in `requirements.txt`
+
+### Installation
+```shell
+sudo pip3 install -r requirements.txt
+```
 
 ### Usage:
 
-1. Edit `config.txt` to specify the hostname of the Mastodon instance you would like to get data from.
-2. Create a file called `secrets.txt` in the folder `secrets/`, as follows:
+1. Install all the required modules on your system. For example `sudo apt-get install gnuplot-nox`
 
+2. Check out this repository. `git@github.com:pacohope/usercount.git`
+
+3. Use your favourite scheduling method to set `./diasporacount.py` to run regularly. You will probably want to script it a bit like this:
+```shell
+
+cd /home/diaspora
+/usr/local/bin/python3 /home/diaspora/usercount/diaspora.py \
+  --database /home/diaspora/diaspora/config/database.yml \
+  --csv /home/diaspora/diasporastats.csv
+mv /home/diaspora/graph.png /home/diaspora/diaspora/public/assets
 ```
-uc_client_id: <your client ID>
-uc_client_secret: <your client secret>
-uc_access_token: <your access token>
-```
 
-3. Use your favourite scheduling method to set `./usercount.py` to run regularly.
-
-Call the script with the `--no-upload` argument if you don't want to upload anything.
-
-Note: The script will fail to output a graph until you've collected data points that are actually different!
+**Note**: The script will fail to output a graph until you've collected enough data points to make a decent graph!
