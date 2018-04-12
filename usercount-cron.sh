@@ -26,7 +26,7 @@ fi
 [ -f "${LOGFILE}" ] && rm -f "${LOGFILE}"
 
 # Run the command
-${PYTHON} "${COUNTHOME}/diaspora.py" \
+${PYTHON} "${COUNTHOME}/diasporacount.py" \
   --database "${YAML}" \
   --csv "${CSV}" > "${LOGFILE}" 2>&1
 
