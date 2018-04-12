@@ -29,7 +29,7 @@ sudo pip3 install -r requirements.txt
 2. Check out this repository. I checked it out into `/home/diaspora`. Like this:
 ```shell
 cd /home/diaspora
-git@github.com:pacohope/usercount.git
+git clone git@github.com:pacohope/usercount.git
 ```
 
 3. Edit `usercount-cron.sh` to update the variables. They should point to the right locations for your files, your config file, and where you want the graph to go.
