@@ -33,5 +33,6 @@ ${PYTHON} "${COUNTHOME}/diasporacount.py" \
 # If we produced a graph bigger than size 0, copy it into place
 if [ -s "graph.png" ]
 then
-    mv /home/diaspora/graph.png /home/diaspora/diaspora/public/assets
+    cp graph.png "${DIASPORA}/diaspora/app/assets/images"
+    cp graph.png "${DIASPORA}/diaspora/public/assets/images
 fi
