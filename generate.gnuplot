@@ -43,7 +43,7 @@ postslast = GPVAL_DATA_X_MAX
 ###############################################################################
 
 # Set up our fonts and such
-set terminal png truecolor size 1464,660 enhanced font "./fonts/RobotoCond.ttf" 17 background rgb "##f0f0f0"
+set terminal png truecolor size 1464,660 enhanced font "./fonts/RobotoCond.ttf" 17 background rgb "#f0f0f0"
 set output 'graph.png'
 
 # Set border colour and line width
