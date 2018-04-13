@@ -36,7 +36,7 @@ sudo pip3 install -r requirements.txt
 
 ### Usage:
 
-1. Install all the required modules on your system. For example `sudo apt-get install gnuplot-nox`
+1. Install all the required modules on your system. For example `sudo apt-get install gnuplot5-nox`
 
 2. Check out this repository. I checked it out into `/home/diaspora`. Like this:
 ```shell
