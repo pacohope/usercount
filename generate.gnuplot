@@ -43,22 +43,22 @@ postslast = GPVAL_DATA_X_MAX
 ###############################################################################
 
 # Set up our fonts and such
-set terminal png truecolor size 1464,660 enhanced font "./fonts/RobotoCond.ttf" 17 background rgb "#282d37"
+set terminal png truecolor size 1464,660 enhanced font "./fonts/RobotoCond.ttf" 17 background rgb "#ffffff"
 set output 'graph.png'
 
 # Set border colour and line width
-set border lw 3 lc rgb "white"
+set border lw 3 lc rgb "#444444"
 
 # Set colours of the tics
-set xtics textcolor rgb "white"
-set ytics textcolor rgb "white"
+set xtics textcolor rgb "#444444"
+set ytics textcolor rgb "#444444"
 
 # Set text colors of labels
-set xlabel "X" textcolor rgb "white"
-set ylabel "Y" textcolor rgb "white"
+set xlabel "X" textcolor rgb "#444444"
+set ylabel "Y" textcolor rgb "#444444"
 
 # Set the text colour of the key
-set key textcolor rgb "white"
+set key textcolor rgb "#444444"
 
 # Draw tics after the other elements, so they're not overlapped
 set tics front
@@ -94,12 +94,12 @@ set rmargin rmarg
 
 # Set Y axis
 set yr [usercountlow:usercounthigh]
-set ylabel "Number of users" textcolor rgb "#93ddff" offset 1,0,0
+set ylabel "Number of users" textcolor rgb "#115050" offset 1,0,0
 
 # Set Y2 axis
 set y2r [0:uc_derivative_high * 2]
 set y2tics 10 nomirror
-set y2label 'Hourly increase' textcolor rgb "#7ae9d8" 
+set y2label 'Hourly increase' textcolor rgb "#5B7C1A" 
 
 # Set X axis
 set xdata time
@@ -120,7 +120,7 @@ set grid
 
 # Plot the graph
 plot "diasporastats.csv" every ::1 using 1:2 w filledcurves x1 title '' lc rgb "#2e85ad", \
-        '' u ($1):(d($2)) w filledcurves x1 title '' axes x1y2 fs transparent solid 0.7 noborder lc rgb "#7ae9d8"
+        '' u ($1):(d($2)) w filledcurves x1 title '' axes x1y2 fs transparent solid 0.7 noborder lc rgb "#5B7C1A"
 
 
 
@@ -141,7 +141,7 @@ set rmargin rmarg
 
 # Set Y axis
 set yr [0:postshigh]
-set ylabel "posts per hour" textcolor rgb "#E9967A"
+set ylabel "posts per hour" textcolor rgb "#5A0303"
 
 # Set X axis
 set xdata time 
@@ -155,7 +155,7 @@ set style line 12 lc rgb "#FEFEFE" lt 1 lw 5
 set grid
 
 # Plot the graph
-plot "diasporastats.csv" every ::1 using ($1):(d($3)) w filledcurves x1 title '' lc rgb "#E9967A"
+plot "diasporastats.csv" every ::1 using ($1):(d($3)) w filledcurves x1 title '' lc rgb "#5A0303"
 
 
 # I think this needs to be here for some reason
