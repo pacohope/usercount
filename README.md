@@ -24,6 +24,16 @@ sudo pip3 install -r requirements.txt
 ```
 3. I recommend running it for the first time manually. E.g., `bash usercount-cron.sh`. Check the output in the `cron.log` file.
 
+4. To get it on the main page of my pod, I hand-edited `diaspora/app/views/home/podmin.haml` (You're not supposed to do it this way.). I added these lines at the bottom of the file. Watch the indentation in HAML. It matters.
+```haml
+  .row
+    .col-md-12
+      %h4.text-center
+        This pod's statistics
+      %p.text-center
+        %img{:src => "/assets/graph.png", :width => "800"}
+```
+
 ### Usage:
 
 1. Install all the required modules on your system. For example `sudo apt-get install gnuplot-nox`
