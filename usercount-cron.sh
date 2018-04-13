@@ -14,6 +14,8 @@ CSV="${COUNTHOME}/diasporastats.csv"
 YAML="${DIASPORA}/diaspora/config/database.yml"
 ASSETS="${DIASPORA}/diaspora/public/assets/"
 LOGFILE="${COUNTHOME}/cron.log"
+# do you use S3? Define a bucket name here
+BUCKET="assets.grumpy.world"
 
 cd "${COUNTHOME}"
 # if there ever isn't a CSV file, we should create one.
@@ -34,4 +36,8 @@ ${PYTHON} "${COUNTHOME}/diasporacount.py" \
 if [ -s "graph.png" ]
 then
     cp graph.png "${DIASPORA}/diaspora/public/assets/"
+    if [ "${BUCKET}" != "" ]
+    then
+        aws s3 cp graph.png s3://${BUCKET}/ --cache-control 3600s --acl public-read
+    fi
 fi
