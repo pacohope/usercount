@@ -34,5 +34,5 @@ ${PYTHON} "${COUNTHOME}/diasporacount.py" \
 if [ -s "graph.png" ]
 then
     cp graph.png "${DIASPORA}/diaspora/app/assets/images"
-    cp graph.png "${DIASPORA}/diaspora/public/assets/images
+    cp graph.png "${DIASPORA}/diaspora/public/assets/images"
 fi
