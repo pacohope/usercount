@@ -26,6 +26,8 @@ fi
 
 # delete the old cron log file so we don't just grow and grow.
 [ -f "${LOGFILE}" ] && rm -f "${LOGFILE}"
+# delete the existing graph.png if it exists
+[ -f "graph.png" ] && rm -f "graph.png"
 
 # Run the command
 ${PYTHON} "${COUNTHOME}/diasporacount.py" \
