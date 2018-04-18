@@ -21,7 +21,7 @@ cd "${COUNTHOME}"
 # if there ever isn't a CSV file, we should create one.
 if [ ! -f "${CSV}" ]
 then
-    echo "timestamp,usercount,postscount" > "${CSV}"
+    echo "timestamp,usercount,postscount,commentscount" > "${CSV}"
 fi
 
 # delete the old cron log file so we don't just grow and grow.

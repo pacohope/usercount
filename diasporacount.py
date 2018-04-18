@@ -20,12 +20,18 @@ def find_closest_timestamp( input_dict, seek_timestamp ):
 
 # Get the current count of non-deleted users from the database
 def getCount( dbFile ):
+    usercount = 0
+    localposts = 0
+    localcomments = 0
 
     usercountQuery = 'select count(id) from users where email not like \'deleted_%\';'
     # adapted from presenters/node_info_presenter.rb
     localpostQuery = """select count(posts.guid) from posts join people on posts.author_id = 
          people.id where posts.type = \'StatusMessage\' AND people.owner_id IS NOT null;"""
-    
+    # adapted from presenters/node_info_presenter.rb
+    localCommentQuery = """select count(comments.guid) from comments join people on comments.author_id = 
+         people.id where people.owner_id IS NOT null;"""
+
     conn = None
     dbData = load(dbFile, Loader=Loader)
     params = {}
@@ -49,13 +55,15 @@ def getCount( dbFile ):
         cur.execute(localpostQuery)
         localposts = cur.fetchone()[0]
         # print( "Post count: {}".format(localposts) )
+        cur.execute(localCommentQuery)
+        localcomments = cur.fetchone()[0]
         cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     finally:
         if conn is not None:
             conn.close()
-    return(usercount, localposts)
+    return(usercount, localposts, localcomments)
  
  
 if __name__ == '__main__':
@@ -71,11 +79,12 @@ if __name__ == '__main__':
         help='Database YAML configuration file from diaspora. Default: "./secrets/database.yml"')
 
     args = parser.parse_args()
-    currentCount, numPosts = getCount( args.database )
+    currentCount, numPosts, numComments = getCount( args.database )
     # Get current timestamp
     ts = int(time.time())
     # Append to CSV file
-    args.csv.write(str(ts) + "," + str(currentCount) + "," + str(numPosts) + "\n")
+    line = "{},{},{},{}\n".format(str(ts), str(currentCount), str(numPosts), str(numComments))
+    args.csv.write(line)
 
     # rewind to the beginning of the file
     args.csv = open(args.csv.name)

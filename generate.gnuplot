@@ -142,6 +142,7 @@ set rmargin rmarg
 # Set Y axis
 set yr [0:postshigh]
 set ylabel "posts per hour" textcolor rgb "#5A0303"
+set y2label "comments per hour" textcolor rgb "#808080"
 
 # Set X axis
 set xdata time 
@@ -155,7 +156,8 @@ set style line 12 lc rgb "#FEFEFE" lt 1 lw 5
 set grid
 
 # Plot the graph
-plot "diasporastats.csv" every ::1 using ($1):(d($3)) w filledcurves x1 title '' lc rgb "#5A0303"
+plot "diasporastats.csv" every ::1 using ($1):(d($3)) w filledcurves x1 title '' lc rgb "#5A0303" ,\
+        '' u ($1):(d($4)) w filledcurves x1 title '' fs transparent solid 0.7 lc rgb "#808080"
 
 
 # I think this needs to be here for some reason
