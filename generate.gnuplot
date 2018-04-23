@@ -8,7 +8,9 @@ d2(x,y) = ($0 == 0) ? (x1 = x, y1 = y, 1/0) : (x2 = x1, x1 = x, y2 = y1, y1 = y,
 # Set length of time for the entire graph
 day = 24*60*60
 week = 7*day
-timespan = day
+fortnight = 2*week
+month = 30*day
+timespan = week
 
 # Set tic width
 tic_width = day
@@ -47,14 +49,14 @@ set terminal png truecolor size 1464,660 enhanced font "./fonts/RobotoCond.ttf" 
 set output 'graph.png'
 
 # Set border colour and line width
-set border lw 3 lc rgb "#444444"
+set border linewidth 3 linecolor rgb "#444444"
 
 # Set colours of the tics
-set xtics textcolor rgb "#444444"
+set xtics textcolor rgb "#444444" font "./fonts/RobotoCond.ttf,12"
 set ytics textcolor rgb "#444444"
 
 # Set text colors of labels
-set xlabel "X" textcolor rgb "#444444"
+set xlabel "X" textcolor rgb "#444444" 
 set ylabel "Y" textcolor rgb "#444444"
 
 # Set the text colour of the key
@@ -64,7 +66,7 @@ set key textcolor rgb "#444444"
 set tics front
 
 # Set layout into multiplot mode (2 rows by 1 column = 2 plots)
-set multiplot layout 2, 1
+set multiplot layout 2, 1 title "a.grumpy.world\n".strftime("%d %b %Y %H:%M", time(0)) font "./fonts/RobotoCond.ttf,24"
 
 # Make sure we don't draw tics on the opposite side of the graph
 set xtics nomirror
@@ -94,12 +96,14 @@ set rmargin rmarg
 
 # Set Y axis
 set yr [usercountlow:usercounthigh]
-set ylabel "Number of users" textcolor rgb "#115050" offset 1,0,0
+# set ylabel "Number of users" textcolor rgb "#115050" offset 1,0,0
+unset ylabel
 
 # Set Y2 axis
 set y2r [0:uc_derivative_high * 2]
-set y2tics 10 nomirror
-set y2label 'Hourly increase' textcolor rgb "#5B7C1A" 
+# set y2tics 10 nomirror
+# set y2label 'Hourly increase' textcolor rgb "#5B7C1A" 
+unset y2label
 
 # Set X axis
 set xdata time
@@ -112,15 +116,17 @@ set autoscale xfix
 set tics scale 0
 set xtics tic_width
 set format x ""
-
+set key left top samplen 0
 
 # Overall graph style
-set style line 12 lc rgb "#FEFEFE" lt 1 lw 5
+set style line 12 linecolor rgb "#FEFEFE" linetype 1 linewidth 5
 set grid
 
 # Plot the graph
-plot "diasporastats.csv" every ::1 using 1:2 w filledcurves x1 title '' lc rgb "#2e85ad", \
-        '' u ($1):(d($2)) w filledcurves x1 title '' axes x1y2 fs transparent solid 0.7 noborder lc rgb "#5B7C1A"
+plot "diasporastats.csv" every ::1 using 1:2 with filledcurves \
+        x1 title 'total users' linecolor rgb "#2e85ad", \
+        '' using ($1):(d($2)) with filledcurves x1 title 'new users' axes x1y2 \
+        fillstyle transparent solid 0.7 noborder linecolor rgb "#5B7C1A"
 
 
 
@@ -141,8 +147,8 @@ set rmargin rmarg
 
 # Set Y axis
 set yr [0:postshigh]
-set ylabel "posts per hour" textcolor rgb "#5A0303"
-set y2label "comments per hour" textcolor rgb "#808080"
+# set ylabel "posts per hour" textcolor rgb "#5A0303"
+# set y2label "comments per hour" textcolor rgb "#808080"
 
 # Set X axis
 set xdata time 
@@ -152,12 +158,14 @@ set format x "%a\n%d %b"
 set xtics tic_width
 
 # Overall graph style
-set style line 12 lc rgb "#FEFEFE" lt 1 lw 5
+set style line 12 linecolor rgb "#FEFEFE" linetype 1 linewidth 5
 set grid
 
 # Plot the graph
-plot "diasporastats.csv" every ::1 using ($1):(d($3)) w filledcurves x1 title '' lc rgb "#5A0303" ,\
-        '' u ($1):(d($4)) w filledcurves x1 title '' fs transparent solid 0.7 lc rgb "#808080"
+plot "diasporastats.csv" every ::1 using ($1):(d($3)) \
+        with filledcurves x1 title 'local posts' linecolor rgb "#5A0303" ,\
+        '' using ($1):(d($4)) with filledcurves x1 title 'local comments' \
+        fillstyle transparent solid 0.7 linecolor rgb "#808080"
 
 
 # I think this needs to be here for some reason
