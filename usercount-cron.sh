@@ -40,7 +40,7 @@ then
     cp graph.png "${DIASPORA}/diaspora/public/assets/"
     if [ "${BUCKET}" != "" ]
     then
-        aws s3 cp graph.png s3://${BUCKET}/ --cache-control "max-age=1200" --acl public-read
-        aws s3 cp "${CSV}" s3://${BUCKET}/
+        aws s3 cp graph.png s3://${BUCKET}/ --cache-control "max-age=1200" --acl public-read --quiet
+        aws s3 cp "${CSV}" s3://${BUCKET}/ --quiet
     fi
 fi
