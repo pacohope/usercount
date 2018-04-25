@@ -35,7 +35,7 @@ uc_derivative_low = GPVAL_DATA_Y_MIN
 uc_derivative_high = GPVAL_DATA_Y_MAX
 
 # Plot derivative of 'postscount' of the past week and get bounds (for GRAPH 2 y1)
-plot "diasporastats.csv" using ($1):(d($3))
+plot "diasporastats.csv" using ($1):(d($4))
 postslow  = GPVAL_DATA_Y_MIN
 postshigh = GPVAL_DATA_Y_MAX
 postslast = GPVAL_DATA_X_MAX
