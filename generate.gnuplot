@@ -125,7 +125,7 @@ set grid
 
 # Plot the graph
 plot "diasporastats.csv" every ::1 using 1:2 with filledcurves \
-        x1 title 'total users' linecolor rgb "#2e85ad", \
+        x1 title 'total users'  fillstyle transparent solid 0.65 linecolor rgb "#2e85ad", \
         '' using ($1):(d($2)) with filledcurves x1 title 'new users' axes x1y2 \
         fillstyle transparent solid 0.7 noborder linecolor rgb "#5B7C1A"
 
@@ -164,7 +164,7 @@ set grid
 
 # Plot the graph
 plot "diasporastats.csv" every ::1 using ($1):(d($3)) \
-        with filledcurves x1 title 'local posts' linecolor rgb "#5A0303" ,\
+        with filledcurves x1 title 'local posts' fillstyle transparent solid 0.7 linecolor rgb "#5A0303" ,\
         '' using ($1):(d($4)) with filledcurves x1 title 'local comments' \
         fillstyle transparent solid 0.7 linecolor rgb "#808080"
 
