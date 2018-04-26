@@ -66,8 +66,9 @@ set key textcolor rgb "#444444"
 set tics front
 
 # Set layout into multiplot mode (2 rows by 1 column = 2 plots)
-set multiplot layout 2, 1 title "a.grumpy.world\n".strftime("%d %b %Y %H:%M", time(0)) font "./fonts/RobotoCond.ttf,24"
-
+set multiplot layout 2, 1 title ""
+set label "a.grumpy.world" at screen 0.1, 0.94 font "./fonts/BlackAndWhitePicture-Regular.ttf,42"
+set label strftime("%d %b %Y %H:%M", time(0)) at screen 0.85, 0.94 font "./fonts/RobotoCond.ttf,12"
 # Make sure we don't draw tics on the opposite side of the graph
 set xtics nomirror
 set ytics nomirror
